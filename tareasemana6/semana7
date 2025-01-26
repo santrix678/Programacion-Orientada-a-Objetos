@@ -1,0 +1,46 @@
+# Clase que representa una Tarea Personal
+class TareaPersonal:
+    def __init__(self, nombre, descripcion, prioridad):
+        """
+        Constructor que inicializa los atributos de la tarea personal.
+        - nombre: nombre de la tarea
+        - descripcion: descripción de la tarea
+        - prioridad: nivel de prioridad (1 = alta, 2 = media, 3 = baja)
+        """
+        self.nombre = nombre
+        self.descripcion = descripcion
+        self.prioridad = prioridad
+        self.estado = "Pendiente"  # Estado inicial de la tarea
+
+        print(f"Constructor: Tarea '{self.nombre}' creada. Prioridad {self.prioridad}.")
+
+    def actualizar_estado(self, nuevo_estado):
+        """
+        Método para actualizar el estado de la tarea.
+        Los posibles estados son: Pendiente, En Progreso, Completada.
+        """
+        if nuevo_estado in ["Pendiente", "En Progreso", "Completada"]:
+            self.estado = nuevo_estado
+            print(f"Estado de la tarea '{self.nombre}' actualizado a '{self.estado}'.")
+        else:
+            print("Estado no válido. Los estados permitidos son: 'Pendiente', 'En Progreso', 'Completada'.")
+
+    def __del__(self):
+        """
+        Destructor que simula el registro de finalización de la tarea.
+        Aquí se podría liberar algún recurso o hacer un registro, por ejemplo.
+        """
+        print(f"Destructor: La tarea '{self.nombre}' ha sido eliminada. Estado final: {self.estado}.")
+        
+# Ejemplo de uso de la clase TareaPersonal
+if __name__ == "__main__":
+    # Crear una nueva tarea
+    tarea_1 = TareaPersonal("Estudiar Python", "Repasar clases de programación en Python", 1)
+
+    # Actualizar el estado de la tarea
+    tarea_1.actualizar_estado("En Progreso")
+    
+    # Finalizar la tarea
+    tarea_1.actualizar_estado("Completada")
+    
+    # El objeto se destruirá automáticamente al salir del bloque, lo que activará el destructor.
